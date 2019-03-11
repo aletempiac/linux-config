@@ -18,11 +18,6 @@ It contains my shell layout, set vim as default editor, plus contains some alias
 This is how the terminal looks like:
 
 <img src="pictures/terminal.png" alt="Terminal" style="float: left; margin-right: 10px;" />  
-<br/><br/>
-<br/><br/>
-<br/><br/>
-<br/><br/>
-<br/><br/>
 
 ## Vim
 Copy `.vimrc` and `.vim` folder inside your home directory, then extract the zip file `.vim/plugged/plugin.zip` inside that folder.  
