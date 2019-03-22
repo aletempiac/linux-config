@@ -112,12 +112,12 @@ bindsym $mod+a focus parent
 
 set $workspace1 "1: Browser "
 set $workspace2 "2: Terminals "
-set $workspace3 "3"
-set $workspace4 "4"
-set $workspace5 "5"
-set $workspace6 "6"
-set $workspace7 "7"
-set $workspace8 "8"
+set $workspace3 "3: "
+set $workspace4 "4: "
+set $workspace5 "5: "
+set $workspace6 "6: "
+set $workspace7 "7: "
+set $workspace8 "8: Mails "
 set $workspace9 "9: File Manager "
 set $workspace10 "10: Music "
 
@@ -214,6 +214,32 @@ bar {
     }
 }
 
+# Set here your locker
+# If you use a wrapper, make sure that it accepts the no fork(-n) flag
+set $Locker /usr/bin/i3lock -e -t
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker --color "$base01" && sleep 1, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $Locker --color "$base01" && sleep 1 && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker --color "$base01" && sleep 1 && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id  systemctl poweroff -i, mode "default"
+
+    #back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Pause mode "$mode_system"
+
+# Autostart xss-lock session daemon
+# Automatically locks your screen before suspend/hibernation and after being idle for some time. Specify the time with xset if needed.
+# The locker must be no forking, you must pass the no fork (-n) flag to i3lock here
+#exec --no-startup-id /usr/bin/xss-lock -n /usr/share/doc/xss-lock/dim-screen.sh -- $Locker -n
+
+
 bindsym $mod+shift+x exec i3lock --color "$base01"
 
 # swap caps lock and escape
@@ -248,5 +274,6 @@ bindsym XF86TouchpadToggle exec /home/tempiaa/.config/i3/.toggletouchpad.sh # to
 exec_always feh --bg-scale /home/tempiaa/Pictures/Desert-1.jpg
 exec google-chrome
 exec --no-startup-id i3-msg 'workspace $workspace9; exec thunar'
+exec --no-startup-id i3-msg 'workspace $workspace8; exec thunderbird'
 exec --no-startup-id i3-msg 'workspace $workspace2; exec gnome-terminal; exec gnome-terminal'
 exec --no-startup-id compton -f
