@@ -57,9 +57,40 @@ During the configuration in that guide I encountered some problems regarding the
 * for the brightness check here ([brightness unresponsive])
 * the volume bar has been solved changing the [volume] script.
 
+Some of the scripts inside [i3blocks] folder has been modified in order to be more aesthetic and in order to add functionalities. They use [FontAwesome] for icons images.
+In particular the battery script has been modified to show the battery level also as an image that updates depending the battery level.  
+The general look of the bar is this:
+
+<img src="pictures/i3bar.png" alt="i3Bar" style="float: left; margin-right: 10px;" />
+
+### Keyboard backlight
+Since normal programs available online for keyboard backlight didn't work, I decided to write my own program [.runkeyboardlight.c]. The code depends on the computer in which is used. In general the two key factors to take into account are:
+- the path of the keyboard backlight device file
+- the range of possible configuration of the backlight
+
+If you locate your device file, you can change the `fpath` variable in the code with the right path. In general it would be something like `/sys/class/leds/asus::kbd_backlight/brightness`. Try to act directly changing the content of the file driver, for example with a one, in order to see if the backlight works, it requires root privileges. Then you have to change the range of values for the brightness. In my laptop is 4 but in some it can be 2 or 3. Change line `44` in the code putting instead of 4 the right number.
+
+Then you have to compile and give to the executable the root ownership and the setuid for the user. To do that open a terminal in the file folder and digit:
+
+```bash
+$ gcc -o .runkeyboardlight .runkeyboardlight.c
+$ sudo chown root .runkeyboardlight
+$ sudo chmod u+s .runkeyboardlight
+```
+Now to increase or decrease the light type in a terminal:
+```bash
+$ .runkeyboardlight inc
+$ .runkeyboardlight dec
+```
+
+Then you can bind the program on the keyboard. Take a look inside [config] to see how it is done.
 
 
 [plug.vim]: .vim/autoload/plug.vim
 [setupi3]: https://github.com/bookercodes/setupi3
 [brightness unresponsive]: https://www.reddit.com/r/i3wm/comments/8aorse/solution_volumebrightness_keys_unresponsive/
 [volume]: i3blocks/volume
+[i3blocks]: i3blocks/
+[FontAwesome]: https://fontawesome.com/
+[.runkeyboardlight.c]: .config/i3/.runkeyboardlight.c
+[config]: .config/i3/config

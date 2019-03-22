@@ -263,6 +263,10 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightnes
 # Touchpad controls
 bindsym XF86TouchpadToggle exec /home/tempiaa/.config/i3/.toggletouchpad.sh # toggle touchpad
 
+# Keyboard brightness controls
+bindsym XF86KbdBrightnessUp exec /home/tempiaa/.config/i3/.runkeyboardlight inc
+bindsym XF86KbdBrightnessDown exec /home/tempiaa/.config/i3/.runkeyboardlight dec
+
 # Media player controls
 #bindsym XF86AudioPlay exec playerctl play
 #bindsym XF86AudioPause exec playerctl pause
