@@ -3,13 +3,15 @@
 "*****************************************************************************
 "" Vim-PLug core
 "*****************************************************************************
-if has('vim_starting')
-  set nocompatible               " Be iMproved
-endif
+"if has('vim_starting')
+"  set nocompatible               " Be iMproved
+"endif
+
+set nocompatible " don't try to act like vi
 
 let vimplug_exists=expand('~/.vim/autoload/plug.vim')
 
-let g:vim_bootstrap_langs = "c,python"
+let g:vim_bootstrap_langs = "c,python,vhdl"
 let g:vim_bootstrap_editor = "vim"				" nvim or vim
 
 if !filereadable(vimplug_exists)
@@ -141,6 +143,13 @@ set incsearch
 set ignorecase
 set smartcase
 
+"" Expand path to subdirs
+set path+=**
+"- find *filename*
+
+"" Shows all matching files when tab complete
+set wildmenu
+
 "" Directories for swp files
 set nobackup
 set noswapfile
@@ -158,6 +167,16 @@ let g:session_directory = "~/.vim/session"
 let g:session_autoload = "no"
 let g:session_autosave = "no"
 let g:session_command_aliases = 1
+
+
+" Make tags command
+command! MakeTags ! ctags -R .
+"- Use Ctrl-] to jump to the tag
+"- Use g-Ctrl-] for ambiguos tags
+"- Use Ctrl-t to jump back from a tag
+
+" Command to remove Windows linebreak
+command RemoveLineBreak :%s/\r//g
 
 "*****************************************************************************
 "" Visual Settings
@@ -352,10 +371,15 @@ nnoremap <leader>ss :SaveSession<Space>
 nnoremap <leader>sd :DeleteSession<CR>
 nnoremap <leader>sc :CloseSession<CR>
 
-"" Tabs
+"" Tab
 nnoremap <Tab> gt
 nnoremap <S-Tab> gT
 nnoremap <silent> <S-t> :tabnew<CR>
+
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . (tabpagenr()+1)<CR>
 
 "" Set working directory
 nnoremap <leader>. :lcd %:p:h<CR>
@@ -467,6 +491,10 @@ autocmd FileType cpp setlocal tabstop=4 shiftwidth=4 noexpandtab
 
 
 " vhdl
+nnoremap ,vhdlsp :-1read ~/.vim/plugged/vhdl/syncprocess.vhd<CR>
+nnoremap ,vhdlp :-1read ~/.vim/plugged/vhdl/process.vhd<CR>
+nnoremap ,vhdlpm :-1read ~/.vim/plugged/vhdl/portmap.vhd<CR>
+
 
 " python
 " vim-python

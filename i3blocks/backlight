@@ -1,0 +1,4 @@
+#!/bin/bash
+
+bright=`xbacklight -get | egrep -o "^[0-9]*"`
+echo "$bright%"

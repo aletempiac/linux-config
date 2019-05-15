@@ -123,11 +123,22 @@ export EDITOR=vim
 #PATH=$PATH:/usr/java/jre1.8.0_191/bin:/home/tempiaa/.local/bin:/home/tempiaa/yotta-venv/bin
 
 ####### Modelsim Environment ########
-alias setmodelsim='src=`pwd` && PATH=$PATH:/usr/local/tools/intelFPGA/18.1/modelsim_ase/bin && sim=/tmp/$USER/ds/sim && mkdir -p $sim && cd $sim && vlib myLib && vmap myLib myLib && echo Modelsim initialized and sim folder created || Initialization failed...'
+alias setmodelsim='src=`pwd` && PATH=$PATH:/usr/local/tools/intelFPGA/18.1/modelsim_ase/bin && sim=/tmp/$USER/ds/sim && mkdir -p $sim && cd $sim && vlib myLib && vmap myLib myLib && echo Modelsim initialized and sim folder created && export src || Initialization failed...'
 
 ####### Vivado Environment #######
-alias setvivado='PATH=$PATH:/usr/local/tools/Xilinx/Vivado/2018.3/bin && syn=/tmp/$USER/ds/syn && mkdir -p $syn && echo Vivado initialized and syn folder created'
+alias setvivado='PATH=$PATH:/usr/local/tools/Xilinx/Vivado/2018.3/bin && syn=/tmp/$USER/ds/syn && mkdir -p $syn && cd $syn && echo Vivado initialized and syn folder created || Initialization failed...'
+alias bootgen='/usr/local/tools/Xilinx/SDK/2018.3/bin/bootgen'
+
 
 export PATH
 
 alias settings='env XDG_CURRENT_DESKTOP=GNOME gnome-control-center'
+alias connect_hdmi='xrandr --output HDMI1 --auto --left-of eDP1'
+
+alias syssec='ssh tempiaa@syssec-lab.s3.eurecom.fr'
+alias softdev='ssh softdev.s3.eurecom.fr'
+alias ssheurecom='ssh tempiaa@ssh.eurecom.fr'
+alias Baffo='cd /home/tempiaa/Documents/Baffo'
+alias sshbaffo='sshpass -p 'maker' ssh robot@ev3dev.local'
+#alias ttools='cd /home/tempiaa/Documents/ttoollinux/ ; ./ttool.exe'
+alias Eurecom='cd /home/tempiaa/Desktop/Eurecom/'

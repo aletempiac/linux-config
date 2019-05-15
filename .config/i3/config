@@ -112,7 +112,7 @@ bindsym $mod+a focus parent
 
 set $workspace1 "1: Browser "
 set $workspace2 "2: Terminals "
-set $workspace3 "3: "
+set $workspace3 "3: Vim "
 set $workspace4 "4: "
 set $workspace5 "5: "
 set $workspace6 "6: "
@@ -186,9 +186,9 @@ bindsym $mod+r mode "resize"
 
 # Window Colours
 #                         border  background text    indicator
-  client.focused          $base01 $base01    $base07 $base0F
-  client.focused_inactive $base02 $base02    $base03 $base0F
-  client.unfocused        $base02 $base02    $base03 $base0F
+  client.focused          $base01 #20425D    $base07 $base0F
+  client.focused_inactive #333333 #5F676A    $base03 $base0F
+  client.unfocused        #333333 #222222    $base03 $base0F
   client.urgent           $base02 $base08    $base00 $base0F
 
 
@@ -203,11 +203,11 @@ bar {
     #bindsym button4 nop
     #bindsym button5 nop
     colors {
-        separator $base03
+        separator $base3
         background $base01
         statusline $base05
 #       border  background text
-        focused_workspace  $base01 $base01    $base07
+        focused_workspace  #4C7899 #20425D    $base07
         active_workspace   $base01 $base02    $base03
         inactive_workspace $base01 $base01    $base03
         urgent_workspace   $base01 $base01    $base08
@@ -240,7 +240,10 @@ bindsym $mod+Pause mode "$mode_system"
 #exec --no-startup-id /usr/bin/xss-lock -n /usr/share/doc/xss-lock/dim-screen.sh -- $Locker -n
 
 
-bindsym $mod+shift+x exec i3lock --color "$base01"
+#bindsym $mod+shift+x exec i3lock --color "$base01"
+bindsym $mod+shift+x exec ~/.config/i3/.lock.sh
+
+bindsym $mod+c exec gnome-screenshot
 
 # swap caps lock and escape
 #exec_always --no-startup-id xmodmap -e "clear lock"
@@ -279,5 +282,6 @@ exec_always feh --bg-scale /home/tempiaa/Pictures/Desert-1.jpg
 exec google-chrome
 exec --no-startup-id i3-msg 'workspace $workspace9; exec thunar'
 exec --no-startup-id i3-msg 'workspace $workspace8; exec thunderbird'
+exec --no-startup-id i3-msg 'workspace $workspace3; exec gnome-terminal'
 exec --no-startup-id i3-msg 'workspace $workspace2; exec gnome-terminal; exec gnome-terminal'
 exec --no-startup-id compton -f
