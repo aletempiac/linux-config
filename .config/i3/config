@@ -243,7 +243,7 @@ bindsym $mod+Pause mode "$mode_system"
 #bindsym $mod+shift+x exec i3lock --color "$base01"
 bindsym $mod+shift+x exec ~/.config/i3/.lock.sh
 
-bindsym $mod+c exec gnome-screenshot
+bindsym $mod+c exec gnome-screenshot -p
 
 # swap caps lock and escape
 #exec_always --no-startup-id xmodmap -e "clear lock"
@@ -260,8 +260,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q -D pulse sset Master
 bindsym XF86AudioMute exec --no-startup-id  amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 2 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 2 # decrease screen brightness
 
 # Touchpad controls
 bindsym XF86TouchpadToggle exec /home/tempiaa/.config/i3/.toggletouchpad.sh # toggle touchpad
@@ -269,6 +269,13 @@ bindsym XF86TouchpadToggle exec /home/tempiaa/.config/i3/.toggletouchpad.sh # to
 # Keyboard brightness controls
 bindsym XF86KbdBrightnessUp exec /home/tempiaa/.config/i3/.runkeyboardlight inc
 bindsym XF86KbdBrightnessDown exec /home/tempiaa/.config/i3/.runkeyboardlight dec
+
+# Screenshot
+bindsym Print exec scrot '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/Pictures/'
+bindsym Shift+Print exec scrot -s '%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f ~/Pictures/'
+
+#Multi-screens
+bindsym $mod+p move workspace to output right
 
 # Media player controls
 #bindsym XF86AudioPlay exec playerctl play
@@ -280,6 +287,7 @@ bindsym XF86KbdBrightnessDown exec /home/tempiaa/.config/i3/.runkeyboardlight de
 
 exec_always feh --bg-scale /home/tempiaa/Pictures/Desert-1.jpg
 exec google-chrome
+exec --no-startup-id redshift -l 43.604893:7.105962
 exec --no-startup-id i3-msg 'workspace $workspace9; exec thunar'
 exec --no-startup-id i3-msg 'workspace $workspace8; exec thunderbird'
 exec --no-startup-id i3-msg 'workspace $workspace3; exec gnome-terminal'

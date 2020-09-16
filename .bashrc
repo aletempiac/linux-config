@@ -93,6 +93,8 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias lt='ls -ltr | tail'
+alias lst='ls -ltr'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -133,12 +135,15 @@ alias bootgen='/usr/local/tools/Xilinx/SDK/2018.3/bin/bootgen'
 export PATH
 
 alias settings='env XDG_CURRENT_DESKTOP=GNOME gnome-control-center'
-alias connect_hdmi='xrandr --output HDMI1 --auto --left-of eDP1'
+alias H='history'
+alias seer='see `ls -tr | tail -1`'
+alias connect_hdmi='xrandr --output HDMI1 --auto --right-of eDP1'
 
-alias syssec='ssh tempiaa@syssec-lab.s3.eurecom.fr'
-alias softdev='ssh softdev.s3.eurecom.fr'
-alias ssheurecom='ssh tempiaa@ssh.eurecom.fr'
-alias Baffo='cd /home/tempiaa/Documents/Baffo'
-alias sshbaffo='sshpass -p 'maker' ssh robot@ev3dev.local'
+alias eclipse='/home/tempiaa/bin/eclipse/java-latest-released/eclipse/eclipse'
+#alias syssec='ssh tempiaa@syssec-lab.s3.eurecom.fr'
+#alias softdev='ssh softdev.s3.eurecom.fr'
+#alias ssheurecom='ssh tempiaa@ssh.eurecom.fr'
+#alias Baffo='cd /home/tempiaa/Documents/Baffo'
+#alias sshbaffo='sshpass -p 'maker' ssh robot@ev3dev.local'
 #alias ttools='cd /home/tempiaa/Documents/ttoollinux/ ; ./ttool.exe'
-alias Eurecom='cd /home/tempiaa/Desktop/Eurecom/'
+#alias Eurecom='cd /home/tempiaa/Desktop/Eurecom/'
